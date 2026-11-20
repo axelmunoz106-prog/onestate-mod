@@ -1,6 +1,7 @@
 #pragma once
 #include <stddef.h>
 #include <stdint.h>
+#include <mach-o/dyld.h>
 typedef struct Il2CppDomain Il2CppDomain;
 typedef struct Il2CppClass Il2CppClass;
 typedef struct Il2CppImage Il2CppImage;
