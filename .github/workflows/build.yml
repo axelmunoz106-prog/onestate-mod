@@ -5,8 +5,11 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
-      - run: brew install ldid
+      - run: brew install ldid xz
       - run: git clone --recursive https://github.com/theos/theos.git $HOME/theos
+      - run: mkdir -p $HOME/theos/sdks
+      - run: curl -L -o /tmp/sdk.tar.xz https://github.com/theos/sdks/releases/download/master-146e41f/iPhoneOS16.5.sdk.tar.xz
+      - run: tar -xJf /tmp/sdk.tar.xz -C $HOME/theos/sdks
       - run: echo "THEOS=$HOME/theos" >> $GITHUB_ENV
       - run: make
       - run: ls -l .theos/obj
