@@ -1,0 +1,16 @@
+name: build
+on: [workflow_dispatch]
+jobs:
+  b:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install ldid
+      - run: git clone --recursive https://github.com/theos/theos.git $HOME/theos
+      - run: echo "THEOS=$HOME/theos" >> $GITHUB_ENV
+      - run: make
+      - run: ls -l .theos/obj
+      - uses: actions/upload-artifact@v4
+        with:
+          name: modmenu
+          path: .theos/obj/modmenu.dylib
